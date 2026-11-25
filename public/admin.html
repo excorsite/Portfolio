@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Admin</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="admin-body">
+  <section class="login-screen" id="login-screen">
+    <form class="login-card" id="login-form">
+      <a class="brand" href="/"><span>A</span> Arpan</a>
+      <h1>Welcome back</h1>
+      <p>Sign in to manage your portfolio.</p>
+      <label>Email<input type="email" name="email" required placeholder="admin@example.com"></label>
+      <label>Password<input type="password" name="password" required minlength="8"></label>
+      <button class="button primary" type="submit">Sign in <span>↗</span></button>
+      <p class="form-status" id="login-status" role="status"></p>
+    </form>
+  </section>
+
+  <div class="admin-shell" id="admin-shell" hidden>
+    <aside class="admin-sidebar">
+      <a class="brand" href="/"><span>A</span> Arpan</a>
+      <nav>
+        <button class="admin-nav active" data-panel="profile">Profile</button>
+        <button class="admin-nav" data-panel="projects">Projects</button>
+        <button class="admin-nav" data-panel="experience">Experience</button>
+        <button class="admin-nav" data-panel="messages">Messages <b id="unread-count">0</b></button>
+      </nav>
+      <button class="logout-button" id="logout-button">Log out</button>
+    </aside>
+    <main class="admin-main">
+      <header class="admin-header"><div><p>Admin dashboard</p><h1 id="admin-title">Profile</h1></div></header>
+
+      <section class="admin-panel active" id="panel-profile">
+        <form class="admin-card" id="profile-form">
+          <div class="field-row">
+            <label>Name<input name="name"></label>
+            <label>Title<input name="title"></label>
+          </div>
+          <label>Bio<textarea name="bio" rows="4"></textarea></label>
+          <div class="field-row">
+            <label>Location<input name="location"></label>
+            <label>Email<input name="email" type="email"></label>
+          </div>
+          <div class="field-row">
+            <label>Phone<input name="phone"></label>
+            <label>Website<input name="website"></label>
+          </div>
+          <div class="field-row">
+            <label>GitHub<input name="github"></label>
+            <label>LinkedIn<input name="linkedin"></label>
+          </div>
+          <label>Skills (comma separated)<input name="skills"></label>
+          <button class="button primary" type="submit">Save profile</button>
+        </form>
+        <form class="admin-card cv-card" id="cv-form">
+          <h2>CV / Resume</h2>
+          <p>Upload a PDF (maximum 10 MB).</p>
+          <input type="file" name="cv" accept="application/pdf" required>
+          <button class="button ghost" type="submit">Upload CV</button>
+        </form>
+      </section>
+
+      <section class="admin-panel" id="panel-projects">
+        <div class="admin-card">
+          <div class="admin-card-header"><h2>Projects</h2><button class="button primary small" id="add-project">Add project</button></div>
+          <div id="admin-projects"></div>
+        </div>
+      </section>
+
+      <section class="admin-panel" id="panel-experience">
+        <div class="admin-card">
+          <div class="admin-card-header"><h2>Experience</h2><button class="button primary small" id="add-experience">Add experience</button></div>
+          <div id="admin-experiences"></div>
+        </div>
+      </section>
+
+      <section class="admin-panel" id="panel-messages">
+        <div class="admin-card"><div class="admin-card-header"><h2>Messages</h2></div><div id="admin-messages"></div></div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="project-dialog">
+    <form class="dialog-form" id="project-form">
+      <h2 id="project-dialog-title">Add project</h2>
+      <input type="hidden" name="id">
+      <label>Title<input name="title" required></label>
+      <label>Description<textarea name="description" rows="3" required></textarea></label>
+      <label>Image URL<input name="image"></label>
+      <label>Technologies (comma separated)<input name="technologies"></label>
+      <div class="field-row"><label>GitHub URL<input name="githubUrl"></label><label>Live URL<input name="liveUrl"></label></div>
+      <div class="field-row"><label>Order<input name="order" type="number" value="0"></label><label class="check-label"><input name="featured" type="checkbox"> Featured</label></div>
+      <div class="dialog-actions"><button type="button" class="button ghost" data-close>Cancel</button><button type="submit" class="button primary">Save</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="experience-dialog">
+    <form class="dialog-form" id="experience-form">
+      <h2 id="experience-dialog-title">Add experience</h2>
+      <input type="hidden" name="id">
+      <div class="field-row"><label>Company<input name="company" required></label><label>Role<input name="role" required></label></div>
+      <label>Location<input name="location"></label>
+      <div class="field-row"><label>Start date<input name="startDate" type="date" required></label><label>End date<input name="endDate" type="date"></label></div>
+      <label>Description<textarea name="description" rows="3"></textarea></label>
+      <label class="check-label"><input name="current" type="checkbox"> Current role</label>
+      <div class="dialog-actions"><button type="button" class="button ghost" data-close>Cancel</button><button type="submit" class="button primary">Save</button></div>
+    </form>
+  </dialog>
+  <script src="/js/admin.js"></script>
+</body>
+</html>
